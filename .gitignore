@@ -1,0 +1,12 @@
+# Ambiente virtual
+venv/
+
+# Arquivos de configuração
+.env
+
+# Arquivos de cache e log
+*.log
+*.pot
+*.pyc
+__pycache__/
+
