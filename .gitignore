@@ -10,3 +10,6 @@ venv/
 *.pyc
 __pycache__/
 
+# Ignorar arquivos e pastas de configuração do ambiente de desenvolvimento
+.vscode/
+.env

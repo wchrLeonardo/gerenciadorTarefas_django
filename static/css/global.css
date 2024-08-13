@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@100..900&family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --var-nav-color: #134B70;
+    --var-text: #ffffff;
+    --var-secondary-color: #b7feff;
+    --var-logout-color: #712A2B;
+    --var-absolute-color: #201e43;
+    --var-color-pop-up: #508c9b;
+    --var-color-todo: #EEBBCD;
+    --var-color-progress: #FFF9BA;
+    --var-color-finished: #BDFFA9;
+    --var-font1: "Inria Sans", sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.nav{
+    height: 15vh;
+    padding: 0 7% 0 0;
+    background-color: var(--var-nav-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 25%;
+    align-items: center;
+    position: relative;
+}
+
+.title-app{
+    font-family: var(--var-font1);
+    font-weight:bold;
+    font-size: 4rem;
+    color: var(--var-text);
+}
+.adjust-logo{
+    position: absolute;
+    left: 20px;
+    height: 150%;
+    box-sizing: content-box;
+    padding: 80px 0 0 0;
+}
+.hidden-button-logo{
+    background: none;
+    padding: 0;
+    border: none;
+}
+.button-add-project{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--var-secondary-color);
+    gap: 5%;
+    border: none;
+    width: 167px;
+    height: 52px;
+}
+.button-add-project p{
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+}
+.log-out{
+    display: flex;
+    justify-content: flex-end;
+    margin: 28px 7% 0 0;
+}
+.log-out-button{
+    background-color: var(--var-logout-color);
+    color: var(--var-text);
+    text-align: center;
+    font-family: var(--var-font1);
+    font-size: 1.25rem;
+    border: none;
+    height: 32px;
+    width: 95px;
+}
+.texts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8%;
+    margin-top: 30px;
+   
+   
+}
+.project-list{
+    display: flex;
+    align-items: center;
+    background-color: var(--var-secondary-color);
+    font-size: 1.3rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    border-radius: 15px;
+    justify-content: center;
+}
+.to-do{
+    display: flex;
+    align-items: center;
+    background-color: var(--var-color-pop-up);
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    border-radius: 15px;
+    justify-content: center;
+    color: var(--var-color-todo);
+}
+.progress{
+    display: flex;
+    align-items: center;
+    background-color: var(--var-nav-color);
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    border-radius: 15px;
+    justify-content: center;
+    color: var(--var-color-progress);
+}
+.finished{
+    display: flex;
+    align-items: center;
+    background-color: var(--var-absolute-color);
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    border-radius: 15px;
+    justify-content: center;
+    color: var(--var-color-finished);
+}

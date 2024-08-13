@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
-from startask.views import home
+from startask.views import task_list
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', home),
+    path("", task_list),
 ]

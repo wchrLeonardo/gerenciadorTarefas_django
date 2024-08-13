@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    {% load static %}
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>StarTask</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <header class="nav">
+       
+        <figure class="adjust-logo">
+            <button class="hidden-button-logo">
+                <img src="{% static 'images/imagem-login.svg' %}" alt="">
+            </button>
+        </figure>
+        <h1 class="title-app">starTask</h1>
+        <button class="button-add-project"> 
+            <img src="{% static 'images/add_project.svg' %}" alt="">
+            <p>Add Project</p>
+        </button>
+    </header>
+    <div class="log-out">
+        <button class="log-out-button">
+            Log Out
+        </button>
+    </div>
+    <main class="application">
+        <section class="texts">
+            <div class="project-list">Project List</div>
+            <div class="to-do">A fazer</div>
+            <div class="progress">Em andamento</div>
+            <div class="finished">Finalizado</div>
+        </section>
+    </main>
+</body>
+</html>
