@@ -1,8 +1,0 @@
-create database startask;
-use startask;
-SELECT VERSION();
-show tables;
-DESCRIBE task;
-insert into startask_task(title, description) values
-('Instalar Django','Testando');
-select * from startask_task;

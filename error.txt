@@ -1,0 +1,17 @@
+##.vscode
+	settings.json	
+{
+    "files.associations": {
+        "**/templates/**/*.html": "django-html"
+    },
+    "emmet.includeLanguages": {
+    "django-html": "html"
+}
+}
+
+instalar extensão django
+
+.env
+SECRET_KEY=django-insecure-0b(p*z-a@vk5#-)ym5d*^_b*9c_9rf#_0kb*tsca5h#(6*z)fm
+DEBUG=True
+ALLOWED_HOSTS=*
