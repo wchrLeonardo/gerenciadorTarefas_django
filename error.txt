@@ -15,3 +15,7 @@ instalar extensão django
 SECRET_KEY=django-insecure-0b(p*z-a@vk5#-)ym5d*^_b*9c_9rf#_0kb*tsca5h#(6*z)fm
 DEBUG=True
 ALLOWED_HOSTS=*
+
+##Criar banco e fazer migrações
+insert into startask_project (name) values('Projeto teste');
+insert into startask_task (title, description,completed,project_id) values('Teste Task', 'Descrião do teste',false,1);
