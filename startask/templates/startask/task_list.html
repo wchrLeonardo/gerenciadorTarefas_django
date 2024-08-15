@@ -75,7 +75,7 @@
         
        
             <div class="to-do">
-                {% for task in tasks %}
+                {% for task in task_list %}
                 <div class="to-do-list">
                     <div class="options">
                         <button class="edit-button">
@@ -127,7 +127,13 @@
           </button>
         </div>
         <div class="modal-body">
-          Task Modal
+          
+            <form class="form-task" method="POST" action="">
+                <input type="text">
+                <textarea name="" id="">
+                </textarea>
+            </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">Save changes</button>

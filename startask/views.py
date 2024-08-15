@@ -1,9 +1,15 @@
 from django.shortcuts import render
+from django.views.generic import ListView, CreateView
+
 from .models import Task
 from .models import Project
 # Create your views here.
-def task_list(request):
-    tasks = Task.objects.all()
-    projects = Project.objects.all()
-    return render(request, "startask/task_list.html", {"tasks":tasks,"projects":projects})
-
+#Só estou mandando as tasks
+class TaskListView(ListView):
+    model = Task
+    
+    
+class TaskCreateView(CreateView):
+    model = Project
+    fields = ["name"]
+    
