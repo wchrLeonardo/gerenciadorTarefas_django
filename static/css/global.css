@@ -47,6 +47,10 @@ body{
     padding: 0;
     border: none;
 }
+.hidden-button-logo:focus{
+    outline: none;
+    box-shadow: none;
+}
 .crt-prjct{
     display: flex;
     align-items: center;
@@ -154,35 +158,46 @@ body{
 }
 .projects{
     height: 420px;
-    width: 225px;
+    width: 18%;
     background-color: var(--var-absolute-color);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-   
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.projects::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem */
 }
 .project{
     margin-top: 5px;
     background-color: var(--var-third-color);
-    width: 210px;
+    width: 200px;
     height: 60px;
     border-radius: 15px;
     box-sizing: content-box;
+    border: none;
+    color: var(--var-text);
+    font-family: var(--var-font1);
+}
+.project:hover{
+    background-color: var(--var-color-task);
+    color: var(--var-absolute-color);
+}
+.project:focus{
+    background-color: var(--var-text);
+    color: var(--var-absolute-color);
+    box-shadow: none;
+    border: dotted 1px var(--var-absolute-color);
 }
 .project h2{
     margin-top: 10px;
     font-size: 0.9rem;
-    color: var(--var-text);
-    font-family: var(--var-font1);
-    margin-left: 30px;
 }
 .project p{
     font-size: 0.6rem;
-    color: var(--var-text);
-    font-family: var(--var-text);
-    margin-left: 70px;
 }
 .to-do{
     display: flex;
