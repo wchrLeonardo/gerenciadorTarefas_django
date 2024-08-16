@@ -192,6 +192,7 @@ body{
     box-shadow: none;
     border: dotted 1px var(--var-absolute-color);
 }
+
 .project h2{
     margin-top: 10px;
     font-size: 0.9rem;
@@ -207,6 +208,11 @@ body{
     background-color: var(--var-nav-color);
     border-radius: 15px;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.to-do::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem */
 }
 .to-do-list{
     display: flex;

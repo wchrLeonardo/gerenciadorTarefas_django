@@ -25,7 +25,6 @@
             <p class="texts-buttons">Add Project</p>
         </button>
     </header>
-
   <!-- Modal Add Project-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -39,6 +38,7 @@
         <div class="modal-body">
           <form method="POST" action="{% url 'add_project' %}">
             {% csrf_token %} 
+            {{ project_form.as_p }}
             <div class="form-group">
               <label for="projectName">Nome do Projeto</label>
               <input type="text" id="projectName" name="name" required>
@@ -71,16 +71,18 @@
      
             <div class="projects">
                 {% for project in projects %}
-                <button class="project">
+                <a href="{% url 'task_list' %}?project_id={{ project.id }}">
+                  <button class="project">
                     <h2>{{ project.name }}</h2>
                     <p>{{ project.created_at }}</p>
-                </button>
+                  </button>
+                </a>
                 {% endfor %}
             </div>
         
        
             <div class="to-do">
-                {% for task in task_list %}
+                {% for task in tasks %}
                 <div class="to-do-list">
                     <div class="options">
                         <button class="edit-button">
@@ -102,6 +104,8 @@
                         <p> {{task.created_at}} </p>
                     </div>
                 </div>
+                {% empty %}
+                <p>No tasks available for this project.</p>
                 {% endfor %}
             </div>
 
@@ -115,37 +119,13 @@
     </div>
 
     <div class="position-button">
-        <button type="button" class="crt-task" data-toggle="modal" data-target="#TaskModal">      
+      <a href="{% url 'add_task' %}?project_id={{ request.GET.project_id }}">
+        <button type="button" class="crt-task">      
             <p class="texts-buttons">Add Task</p>
             <img src="{% static 'images/Plus.png' %}" alt="">
         </button>
+      </a>
     </div>
-
-    <!-- Modal Add Task-->
-  <div class="modal fade" id="TaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          
-            <form class="form-task" method="POST" action="">
-                <input type="text">
-                <textarea name="" id="">
-                </textarea>
-            </form>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
     </main>
     <footer class="ftr">
@@ -153,4 +133,5 @@
         <p>Leonardo Wicher</p>
     </footer>
 </body>
+
 </html>
