@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    <script src="{% static 'js/global.js' %}"></script>
+
 </head>
 <body>
     <header class="nav">
@@ -81,9 +83,12 @@
             </div>
         
        
-            <div class="to-do">
+            <div id="to-do-container" class="to-do">
                 {% for task in tasks %}
+                {% if task.status_completed == 'todo' %}
+               
                 <div class="to-do-list">
+                
                     <div class="options">
                         <button class="edit-button">
                             <img src="{% static 'images/edit.svg' %}" alt="">
@@ -97,24 +102,78 @@
                         <p>{{ task.description }}</p>
                     </div>
                     <div class="check">
-                        <button class="send-progress"></button>
-                        <button class="send-finished"></button>
+                    
+                        <button class="send-progress" onclick="window.location.href='{% url 'update_task_status' task.id 'in_progress' %}?project_id={{ request.GET.project_id }}'"></button>
+                     
+                        <button onclick="window.location.href='{% url 'update_task_status' task.id 'finished' %}?project_id={{ request.GET.project_id }}'" class="send-finished"></button>
                     </div>
                     <div>
                         <p> {{task.created_at}} </p>
                     </div>
                 </div>
+              
+                {% endif %}
+           
                 {% empty %}
                 <p>No tasks available for this project.</p>
                 {% endfor %}
             </div>
 
-            <div class="progress-list">
-
+            <div id="progress-container" class="progress">
+              {% for task in tasks %}
+              {% if task.status_completed == 'in_progress' %}
+              <div class="to-do-list">
+                  <div class="options">
+                      <button class="edit-button">
+                          <img src="{% static 'images/edit.svg' %}" alt="">
+                      </button>
+                      <h2>{{ task.title }}</h2>
+                      <button class="delete-button">
+                          <img src="{% static 'images/delete.svg' %}" alt="">
+                      </button>
+                  </div>
+                  <div class="description">
+                      <p>{{ task.description }}</p>
+                  </div>
+                  <div class="check">
+                    
+                      <button class="send-todo" onclick="window.location.href='{% url 'update_task_status' task.id 'todo' %}?project_id={{ request.GET.project_id }}'"></button>        
+                      <button class="send-finished" onclick="window.location.href='{% url 'update_task_status' task.id 'finished' %}?project_id={{ request.GET.project_id }}'"></button>
+                  </div>
+                  <div>
+                      <p> {{task.created_at}} </p>
+                  </div>
+              </div>
+              {% endif %}
+              {% endfor %}
             </div>
 
-            <div class="finished-list">
-
+            <div id="finished-container" class="finished">
+              {% for task in tasks %}
+              {% if task.status_completed == 'finished' %}
+              <div class="to-do-list">
+                  <div class="options">
+                      <button class="edit-button">
+                          <img src="{% static 'images/edit.svg' %}" alt="">
+                      </button>
+                      <h2>{{ task.title }}</h2>
+                      <button class="delete-button">
+                          <img src="{% static 'images/delete.svg' %}" alt="">
+                      </button>
+                  </div>
+                  <div class="description">
+                      <p>{{ task.description }}</p>
+                  </div>
+                  <div class="check">
+                      <button class="send-todo" onclick="window.location.href='{% url 'update_task_status' task.id 'todo' %}?project_id={{ request.GET.project_id }}'"></button>
+                      <button class="send-progress" onclick="window.location.href='{% url 'update_task_status' task.id 'in_progress' %}?project_id={{ request.GET.project_id }}'"></button>
+                  </div>
+                  <div>
+                      <p> {{task.created_at}} </p>
+                  </div>
+              </div>
+              {% endif %}
+              {% endfor %}
             </div>
     </div>
 
@@ -128,6 +187,27 @@
     </div>
 
     </main>
+
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="taskModalLabel">Task Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Title:</strong> <span id="task-title"></span></p>
+            <p><strong>Description:</strong> <span id="task-description"></span></p>
+            <p><strong>Created At:</strong> <span id="task-created-at"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <footer class="ftr">
         <p>2024&copy;</p>
         <p>Leonardo Wicher</p>

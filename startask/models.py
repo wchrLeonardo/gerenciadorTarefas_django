@@ -9,11 +9,16 @@ class Project(models.Model):
         return self.name
 
 class Task(models.Model):
+    STATUS_CHOICES = [
+        ('todo', 'To Do'),
+        ('in_progress', 'In Progress'),
+        ('finished', 'Finished')
+    ]
     title = models.CharField(max_length=80, null=False, blank=False)
     description = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
-    completed = models.BooleanField(default=False)
+    status_completed = models.CharField(max_length=15, choices=STATUS_CHOICES,default="todo")
     project = models.ForeignKey(Project, models.CASCADE, related_name='tasks')
 
     def __str__(self):

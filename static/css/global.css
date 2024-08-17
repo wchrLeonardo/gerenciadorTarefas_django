@@ -247,6 +247,13 @@ body{
    font-weight: bold;
    font-size: 1rem;
 }
+.send-todo{
+    height: 20px;
+    width: 20px;
+    background-color: var(--var-color-todo);
+    border: solid 2px var(--var-absolute-color);
+    padding: 0;
+}
 .send-progress{
     height: 20px;
     width: 20px;
@@ -271,13 +278,21 @@ body{
     justify-content: center;
     gap: 3%;
 }
-.progress-list{
-    height: 420px;
-    width: 270px;
-    background-color: var(--var-nav-color);
-    border-radius: 15px;
+.progress{
+    height: 420px !important;
+    width: 270px !important;
+    background-color: var(--var-nav-color) !important;
+    border-radius: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
-.finished-list{
+.progress::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem */
+}
+.finished{
     height: 420px;
     width: 270px;
     background-color: var(--var-nav-color);
