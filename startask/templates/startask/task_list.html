@@ -81,11 +81,6 @@
                 </a>
                 {% endfor %}
             </div>
-    
-
-
-
-
        
             <div id="to-do-container" class="to-do">
                 {% for task in tasks %}
@@ -94,7 +89,7 @@
                 <div class="to-do-list" data-task-id="{{ task.id }}" data-task-title="{{ task.title }}" data-task-description="{{ task.description }}" data-task-created-at="{{ task.created_at }}">
                 
                     <div class="options">
-                        <button class="edit-button">
+                        <button class="edit-button" onclick="if(confirm('Tem certeza que deseja alterar esta tarefa?')) {window.location.href='{% url "update_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                             <img src="{% static 'images/edit.svg' %}" alt="">
                         </button>
                         <h2>{{ task.title }}</h2>
@@ -130,7 +125,7 @@
               data-task-description="{{ task.description }}" 
               data-task-created-at="{{ task.created_at }}">
                   <div class="options">
-                      <button class="edit-button">
+                      <button class="edit-button" onclick="if(confirm('Tem certeza que deseja alterar esta tarefa?')) {window.location.href='{% url "update_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                           <img src="{% static 'images/edit.svg' %}" alt="">
                       </button>
                       <h2>{{ task.title }}</h2>
@@ -161,7 +156,7 @@
               data-task-description="{{ task.description }}" 
               data-task-created-at="{{ task.created_at }}">
                   <div class="options">
-                      <button class="edit-button">
+                      <button class="edit-button" onclick="if(confirm('Tem certeza que deseja alterar esta tarefa?')) {window.location.href='{% url "update_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                           <img src="{% static 'images/edit.svg' %}" alt="">
                       </button>
                       <h2>{{ task.title }}</h2>

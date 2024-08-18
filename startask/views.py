@@ -50,9 +50,20 @@ class TaskCreateView(CreateView):
 
 class UpdateTaskView(UpdateView):
     model = Task
-    fields = ['title', 'description', 'status_completed'] 
-    template_name = 'update_task_form.html'
-    success_url = reverse_lazy('task_list')
+    fields = ['title', 'description'] 
+    template_name = 'startask/task_update.html'
+    context_object_name = 'task'
+    
+    def get_success_url(self):
+        project_id = self.object.project.id  
+        return reverse('task_list')+ f'?project_id={project_id}'
+        # project_id = self.request.GET.get('project_id')
+        # print(f"Project ID: {project_id}")
+        # if project_id:
+        #     url = f"{reverse('task_list')}?project_id={project_id}"
+        #     return redirect(url)  
+        # return redirect(reverse('task_list'))
+
 
 def update_task_status(request, task_id, status):
     task = get_object_or_404(Task, id=task_id)
