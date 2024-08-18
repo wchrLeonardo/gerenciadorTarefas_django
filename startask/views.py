@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
+from django.views.generic.edit import UpdateView
 from django.shortcuts import get_object_or_404, redirect
 from .models import Task, Project
 from django.http import JsonResponse
@@ -45,16 +46,14 @@ class TaskCreateView(CreateView):
             project = get_object_or_404(Project, id=project_id)
             form.instance.project = project
         return super().form_valid(form)
-
-
-# def update_task_status(request, task_id, status):
-#     task = get_object_or_404(Task, id=task_id)
-#     if status in ['todo', 'in_progress', 'finished']:
-#         task.status_completed = status
-#         task.save()
-#         return JsonResponse({'success': True})
-#     return JsonResponse({'success': False, 'error': 'Status inválido'})
     
+
+class UpdateTaskView(UpdateView):
+    model = Task
+    fields = ['title', 'description', 'status_completed'] 
+    template_name = 'update_task_form.html'
+    success_url = reverse_lazy('task_list')
+
 def update_task_status(request, task_id, status):
     task = get_object_or_404(Task, id=task_id)
     if status in ['todo', 'in_progress', 'finished']:
@@ -66,6 +65,28 @@ def update_task_status(request, task_id, status):
             return redirect(url)  
         return redirect(reverse('task_list'))
     return JsonResponse({'success': False, 'error': 'Status inválido'})
+
+
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    project_id = request.GET.get('project_id')  
+    task.delete()
+    if project_id:
+        url = f"{reverse('task_list')}?project_id={project_id}"
+        return redirect(url)  
+    return redirect(reverse('task_list'))
+
+
+def delete_project(request):
+    project_id = request.GET.get('project_id')
+    project = get_object_or_404(Project, id=project_id)
+    if project_id:
+        project.delete()
+        return redirect(reverse('task_list'))
+    else:
+        return JsonResponse({'success': False, 'error': 'error'})
+ 
+
 
 
 

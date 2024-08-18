@@ -81,20 +81,24 @@
                 </a>
                 {% endfor %}
             </div>
-        
+    
+
+
+
+
        
             <div id="to-do-container" class="to-do">
                 {% for task in tasks %}
                 {% if task.status_completed == 'todo' %}
                
-                <div class="to-do-list">
+                <div class="to-do-list" data-task-id="{{ task.id }}" data-task-title="{{ task.title }}" data-task-description="{{ task.description }}" data-task-created-at="{{ task.created_at }}">
                 
                     <div class="options">
                         <button class="edit-button">
                             <img src="{% static 'images/edit.svg' %}" alt="">
                         </button>
                         <h2>{{ task.title }}</h2>
-                        <button class="delete-button">
+                        <button class="delete-button" onclick="if(confirm('Tem certeza que deseja deletar esta tarefa?')) {window.location.href='{% url "delete_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                             <img src="{% static 'images/delete.svg' %}" alt="">
                         </button>
                     </div>
@@ -108,7 +112,7 @@
                         <button onclick="window.location.href='{% url 'update_task_status' task.id 'finished' %}?project_id={{ request.GET.project_id }}'" class="send-finished"></button>
                     </div>
                     <div>
-                        <p> {{task.created_at}} </p>
+                        <p> Atualizada em {{task.updated_at}} </p>
                     </div>
                 </div>
               
@@ -119,16 +123,18 @@
                 {% endfor %}
             </div>
 
-            <div id="progress-container" class="progress">
+            <div id="progress-container" class="progress" >
               {% for task in tasks %}
               {% if task.status_completed == 'in_progress' %}
-              <div class="to-do-list">
+              <div class="to-do-list" data-task-title="{{ task.title }}" 
+              data-task-description="{{ task.description }}" 
+              data-task-created-at="{{ task.created_at }}">
                   <div class="options">
                       <button class="edit-button">
                           <img src="{% static 'images/edit.svg' %}" alt="">
                       </button>
                       <h2>{{ task.title }}</h2>
-                      <button class="delete-button">
+                      <button class="delete-button" onclick="if(confirm('Tem certeza que deseja deletar esta tarefa?')) {window.location.href='{% url "delete_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                           <img src="{% static 'images/delete.svg' %}" alt="">
                       </button>
                   </div>
@@ -141,7 +147,7 @@
                       <button class="send-finished" onclick="window.location.href='{% url 'update_task_status' task.id 'finished' %}?project_id={{ request.GET.project_id }}'"></button>
                   </div>
                   <div>
-                      <p> {{task.created_at}} </p>
+                      <p> Atualizada em {{task.updated_at}} </p>
                   </div>
               </div>
               {% endif %}
@@ -151,13 +157,15 @@
             <div id="finished-container" class="finished">
               {% for task in tasks %}
               {% if task.status_completed == 'finished' %}
-              <div class="to-do-list">
+              <div class="to-do-list" data-task-title="{{ task.title }}" 
+              data-task-description="{{ task.description }}" 
+              data-task-created-at="{{ task.created_at }}">
                   <div class="options">
                       <button class="edit-button">
                           <img src="{% static 'images/edit.svg' %}" alt="">
                       </button>
                       <h2>{{ task.title }}</h2>
-                      <button class="delete-button">
+                      <button class="delete-button" onclick="if(confirm('Tem certeza que deseja deletar esta tarefa?')) {window.location.href='{% url "delete_task" task.id %}?project_id={{ request.GET.project_id }}'}">
                           <img src="{% static 'images/delete.svg' %}" alt="">
                       </button>
                   </div>
@@ -169,7 +177,7 @@
                       <button class="send-progress" onclick="window.location.href='{% url 'update_task_status' task.id 'in_progress' %}?project_id={{ request.GET.project_id }}'"></button>
                   </div>
                   <div>
-                      <p> {{task.created_at}} </p>
+                      <p> Atualizada em {{task.updated_at}} </p>
                   </div>
               </div>
               {% endif %}
@@ -178,30 +186,54 @@
     </div>
 
     <div class="position-button">
+
+      {% if request.GET.project_id %}
+        <button type="button" class="del-project" onclick="if(confirm('Tem certeza que deseja deletar este Projeto?')) {window.location.href='{% url 'delete_project' %}?project_id={{ request.GET.project_id }}'}">      
+            <p class="texts-buttons">Delete Project</p>
+            <img src="{% static 'images/Plus.png' %}" alt="">
+        </button>
+        {% else %}
+        <button type="button" class="del-project" onclick="alert('Por favor, primeiro selecione um projeto')">      
+          <p class="texts-buttons">Delete Project</p>
+          <img src="{% static 'images/Plus.png' %}" alt="">
+      </button>
+        {% endif %}
+
+
+        {% if request.GET.project_id %}
       <a href="{% url 'add_task' %}?project_id={{ request.GET.project_id }}">
         <button type="button" class="crt-task">      
             <p class="texts-buttons">Add Task</p>
             <img src="{% static 'images/Plus.png' %}" alt="">
         </button>
       </a>
+      {% else %}
+      
+        <button type="button" class="crt-task" onclick="alert('Por favor, primeiro selecione um projeto')">      
+            <p class="texts-buttons">Add Task</p>
+            <img src="{% static 'images/Plus.png' %}" alt="">
+        </button>
+      
+{% endif %}
+
     </div>
 
     </main>
 
+    <!--Modal Data -->
     <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="taskModalLabel">Task Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
-            <p><strong>Title:</strong> <span id="task-title"></span></p>
-            <p><strong>Description:</strong> <span id="task-description"></span></p>
-            <p><strong>Created At:</strong> <span id="task-created-at"></span></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <p><strong>Title:</strong> <span id="modal-task-title"></span></p>
+            <p><strong>Description:</strong> <span id="modal-task-description"></span></p>
+            <p><strong>Created At:</strong> <span id="modal-task-created-at"></span></p>
           </div>
         </div>
       </div>
