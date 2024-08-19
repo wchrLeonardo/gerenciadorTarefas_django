@@ -138,5 +138,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'  # Para onde o usuário será redirecionado após login
+LOGIN_REDIRECT_URL = 'task_list'  # Para onde o usuário será redirecionado após login
 LOGOUT_REDIRECT_URL = 'login'  # Para onde o usuário será redirecionado após logout
+
+AUTH_USER_MODEL = 'startask.User'
+
+# settings.py
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+

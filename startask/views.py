@@ -1,38 +1,77 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
 from django.shortcuts import get_object_or_404, redirect
-from .models import Task, Project
+from .models import Task, Project, User
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
+
 # Create your views here.
 
-class CombinedListView(ListView):
+class CombinedListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'task_list.html'
     context_object_name = 'tasks'
 
+
     def get_queryset(self):
         project_id = self.request.GET.get('project_id')
         if project_id:
-            return Task.objects.filter(project=project_id)
-        return Task.objects.none()
+            print(f"User instance: {self.request.user} (Type: {type(self.request.user)})")
+            return Task.objects.filter(project_id=project_id, project__user=self.request.user)
+        return Task.objects.filter(project__user=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['projects'] = Project.objects.all() 
+        # Exibe apenas projetos associados ao usuário logado
+        context['projects'] = Project.objects.filter(user=self.request.user)
         context['selected_project_id'] = self.request.GET.get('project_id')
-        # context['another_models'] = AnotherModel.objects.all()  
         return context
+
+
+
+
+
+
+# class CombinedListView(ListView):
+#     model = Task
+#     template_name = 'task_list.html'
+#     context_object_name = 'tasks'
+
+#     def get_queryset(self):
+#         project_id = self.request.GET.get('project_id')
+#         if project_id:
+#             return Task.objects.filter(project=project_id)
+#         return Task.objects.none()
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['projects'] = Project.objects.all() 
+#         context['selected_project_id'] = self.request.GET.get('project_id')
+#         context['users'] = User.objects.all()  
+#         return context
     
     
 class ProjectCreateView(CreateView):
     model = Project
     fields = ["name"]
     success_url = reverse_lazy('task_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('task_list')
 
 
 class TaskCreateView(CreateView):
@@ -98,7 +137,105 @@ def delete_project(request):
         return JsonResponse({'success': False, 'error': 'error'})
  
 
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             return redirect('login')
+#         else:
+#             print("error", form.errors)
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'startask/register.html', {'form': form})
 
+
+    # myapp/views.py
+from django.contrib import messages
+from .forms import RegisterForm, LoginForm
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+       
+            auth_login(request, user)  # Faz login do usuário após o registro
+            return redirect(reverse('task_list'))  # Redirecione para a página inicial ou outra página
+    else:
+        form = RegisterForm()
+
+    return render(request, 'startask/register.html', {'form': form})
+
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return redirect(reverse('task_list'))  # Redireciona para a lista de tarefas ou outra página
+            else:
+                form.add_error(None, 'Invalid username or password.')
+    else:
+        form = LoginForm()
+    
+    return render(request, 'startask/login.html', {'form': form})
+
+
+
+
+
+
+
+    # if request.method == 'POST':
+    #     form = LoginForm(request.POST)
+    #     if form.is_valid():
+    #         user = form.cleaned_data['user']
+    #         auth_login(request, user)
+    #         return redirect('startask/task_list')  # Redireciona para a página desejada após o login
+    # else:
+    #     form = LoginForm()
+
+    # return render(request, 'startask/login.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class CustomUserCreationForm(UserCreationForm):
+#     email = forms.EmailField(required=True)
+
+#     class Meta:
+#         model = User
+#         fields = ['user', 'email', 'password']
+
+
+# def register(request):
+#     if request.method == "POST":
+#         return render(request, 'startask/register.html')
+#     else:
+#         username = request.POST.get('user')
+#         email = request.POST.get('email')
+#         passsword = request.POST.get('password')
+#         return HttpResponse(user)
 
 
 

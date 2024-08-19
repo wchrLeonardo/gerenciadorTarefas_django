@@ -55,11 +55,13 @@
     </div>
   </div>
 
-
     <div class="log-out">
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
         <button class="log-out-button">
             Log Out
         </button>
+      </form>
     </div>
     <main class="application">
         <section class="texts">
