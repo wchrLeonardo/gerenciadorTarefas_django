@@ -17,5 +17,5 @@ DEBUG=True
 ALLOWED_HOSTS=*
 
 ##Criar banco e fazer migrações
-insert into startask_project (name) values('Projeto teste');
-insert into startask_task (title, description,completed,project_id) values('Teste Task', 'Descrião do teste',false,1);
+
+FRONT-END AINDA MEIO CAGADO, EM ATUALIZAÇÕES
