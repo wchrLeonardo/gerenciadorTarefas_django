@@ -1,0 +1,15 @@
+# Ambiente virtual
+.venv/*
+venv/
+
+# Arquivos de configuração
+.env
+
+# Arquivos de cache e log
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# Ignorar arquivos e pastas de configuração do ambiente de desenvolvimento
+.vscode/
