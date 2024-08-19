@@ -9,7 +9,6 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
@@ -37,28 +36,6 @@ class CombinedListView(LoginRequiredMixin, ListView):
         context['selected_project_id'] = self.request.GET.get('project_id')
         return context
 
-
-
-
-
-
-# class CombinedListView(ListView):
-#     model = Task
-#     template_name = 'task_list.html'
-#     context_object_name = 'tasks'
-
-#     def get_queryset(self):
-#         project_id = self.request.GET.get('project_id')
-#         if project_id:
-#             return Task.objects.filter(project=project_id)
-#         return Task.objects.none()
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['projects'] = Project.objects.all() 
-#         context['selected_project_id'] = self.request.GET.get('project_id')
-#         context['users'] = User.objects.all()  
-#         return context
     
     
 class ProjectCreateView(CreateView):
@@ -96,12 +73,7 @@ class UpdateTaskView(UpdateView):
     def get_success_url(self):
         project_id = self.object.project.id  
         return reverse('task_list')+ f'?project_id={project_id}'
-        # project_id = self.request.GET.get('project_id')
-        # print(f"Project ID: {project_id}")
-        # if project_id:
-        #     url = f"{reverse('task_list')}?project_id={project_id}"
-        #     return redirect(url)  
-        # return redirect(reverse('task_list'))
+    
 
 
 def update_task_status(request, task_id, status):
@@ -137,17 +109,7 @@ def delete_project(request):
         return JsonResponse({'success': False, 'error': 'error'})
  
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             return redirect('login')
-#         else:
-#             print("error", form.errors)
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'startask/register.html', {'form': form})
+
 
 
     # myapp/views.py
@@ -160,8 +122,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
        
-            auth_login(request, user)  # Faz login do usuário após o registro
-            return redirect(reverse('task_list'))  # Redirecione para a página inicial ou outra página
+            auth_login(request, user)  
+            return redirect(reverse('task_list'))  
     else:
         form = RegisterForm()
 
@@ -189,18 +151,6 @@ def login(request):
 
 
 
-
-
-    # if request.method == 'POST':
-    #     form = LoginForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.cleaned_data['user']
-    #         auth_login(request, user)
-    #         return redirect('startask/task_list')  # Redireciona para a página desejada após o login
-    # else:
-    #     form = LoginForm()
-
-    # return render(request, 'startask/login.html', {'form': form})
 
 
 
