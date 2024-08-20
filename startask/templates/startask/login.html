@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
+    <title>Login</title>
 </head>
-<body>
-    <h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-<p>Não tem uma conta? 
-    <a href="{% url 'register' %}">Registrar</a></p>
+<body class="body-login">
+    <figure>
+        <img class="image-sky" src="{% static 'images/sky.svg' %}" alt="">
+    </figure>
+    
+    <div class="structure-login">
+   
+        <h1 class="title-project">StarTask</h1>
+  
+        <div class="gappin">
+
+        <div class="header-task-image">
+            <img class="image-header-form" src="{% static "images/cabecalho-prancheta.svg" %}" alt="">
+            <p class="text-login">Log-in</p>
+        </div>
+
+    <div class="form-startask-login">
+        
+        <div class="forms-field">
+            <form method="post">
+                {% csrf_token %}
+        
+            <div class="user-login">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-user-login">
+            </div>
+            <div class="password-login">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-password-login" >
+            </div>
+                <div class="adjust-button-login">
+                    <button class="button-login" type="submit">Login</button>
+                </div>
+            </form>
+            <div> 
+                <img src="{% static 'images/warning-register.svg' %}" alt="">
+                <a class="link-register" href="{% url 'register' %}">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="image-style-login">
+    <img src="{% static 'images/imagem-login-x.svg' %}" alt="">
+    </div>
+</div>
 </body>
 </html>
 

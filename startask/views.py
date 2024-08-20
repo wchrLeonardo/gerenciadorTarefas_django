@@ -109,10 +109,6 @@ def delete_project(request):
         return JsonResponse({'success': False, 'error': 'error'})
  
 
-
-
-
-    # myapp/views.py
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
 
@@ -139,7 +135,7 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect(reverse('task_list'))  # Redireciona para a lista de tarefas ou outra página
+                return redirect(reverse('task_list'))  
             else:
                 form.add_error(None, 'Invalid username or password.')
     else:
