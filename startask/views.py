@@ -14,7 +14,6 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 
-# Create your views here.
 
 class CombinedListView(LoginRequiredMixin, ListView):
     model = Task
@@ -109,10 +108,6 @@ def delete_project(request):
         return JsonResponse({'success': False, 'error': 'error'})
  
 
-
-
-
-    # myapp/views.py
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
 
@@ -139,53 +134,10 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect(reverse('task_list'))  # Redireciona para a lista de tarefas ou outra página
+                return redirect(reverse('task_list'))  
             else:
                 form.add_error(None, 'Invalid username or password.')
     else:
         form = LoginForm()
     
     return render(request, 'startask/login.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class CustomUserCreationForm(UserCreationForm):
-#     email = forms.EmailField(required=True)
-
-#     class Meta:
-#         model = User
-#         fields = ['user', 'email', 'password']
-
-
-# def register(request):
-#     if request.method == "POST":
-#         return render(request, 'startask/register.html')
-#     else:
-#         username = request.POST.get('user')
-#         email = request.POST.get('email')
-#         passsword = request.POST.get('password')
-#         return HttpResponse(user)
-
-
-
