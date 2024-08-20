@@ -320,5 +320,133 @@ body{
     color: var(--var-text);
     padding: 15px;
     font-family: var(--var-font1);
+}
+.image-sky{
+    width: 100%;
+    height: 10%;
+}
+.structure-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title-project{
+    font-family: var(--var-font1);
+    font-weight: bold;
+    font-size: 6rem;
+    color: var(--var-text);
+    margin-top: -10%;
+}
+.user-login label{
+    color: #fafafa;
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    margin-top: 30px;
+}
+.form-user-login{
+    height: 31px;
+    width: 176px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    color: black;
+    border: none;
+}
+.password-login label{
+    color: #fafafa;
+    font-size: 1rem;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    margin-top: 20px;
+}
+.form-password-login{
+    height: 31px;
+    width: 176px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    color: black;
+    border: none;
+}
+.form-user-login:focus{
+    outline: none;
+}
+.form-password-login:focus{
+    outline: none;
+}
+.button-login{
+    background-color: #86BCFF;
+    border-radius: 10px;
+    color: #4A4A4A;
+    height: 31px;
+    width: 100px;
+    outline: none;
+    border: none;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    margin-top: 30px;
+}
+.link-register{
+    text-decoration: none;
+    color: #86BCFF;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+.image-header-form{
+    position: relative;
+}
+.header-task-image{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.text-login{
+    color: #151515;
+    font-family: var(--var-font1);
+    font-weight: bold;
+    font-size: 2rem;
+    position: absolute;
+    margin-top: 80px;
+}
+.body-login{
+    background-color: #201E43;
+}
+.form-startask-login{
+    width: 320px;
+    height: 350px;
+    background-color: #134B70;
+    border-radius: 15px;
+    margin-top: -30px;
+}
+.forms-field{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: center;
+    font-family: var(--var-font1);
+}
+.user-login{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.password-login{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.image-style-login{
+    margin-top: -2%;
+    padding: 0;
+    height: auto;
+   
 
+}
+.gappin{
+    margin-top: -3%;
+}
+.adjust-button-login{
+    display: flex;
+    justify-content: center;
 }
