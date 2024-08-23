@@ -28,7 +28,13 @@ body{
     align-items: center;
     position: relative;
 }
-
+.welcome-user{
+    font-family: var(--var-font1);
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    margin-left: 7%;
+}
 .title-app{
     font-family: var(--var-font1);
     font-weight:bold;
@@ -392,6 +398,14 @@ body{
     font-weight: bold;
     font-size: 1.25rem;
 }
+.link-login{
+    color: #86BCFF;
+    font-family: var(--var-font1);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 50px;
+}
 .image-header-form{
     position: relative;
 }
@@ -418,6 +432,13 @@ body{
     border-radius: 15px;
     margin-top: -30px;
 }
+.form-startask-register{
+    width: 320px;
+    height: 30em;
+    background-color: #134B70;
+    border-radius: 15px;
+    margin-top: -30px;
+}
 .forms-field{
     display: flex;
     flex-direction: column;
@@ -440,8 +461,6 @@ body{
     margin-top: -2%;
     padding: 0;
     height: auto;
-   
-
 }
 .gappin{
     margin-top: -3%;
@@ -450,3 +469,11 @@ body{
     display: flex;
     justify-content: center;
 }
+
+
+
+
+
+
+
+

@@ -1,38 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
     <title>Document</title>
 </head>
-<body>
-    <h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+<body class="body-login">
 
+    <figure>
+        <img class="image-sky" src="{% static 'images/sky.svg' %}" alt="">
+    </figure>
+    
+    <div class="structure-login">
    
+        <h1 class="title-project">StarTask</h1>
+  
+        <div class="gappin">
 
-    {% comment %} <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+        <div class="header-task-image">
+            <img class="image-header-form" src="{% static "images/cabecalho-prancheta.svg" %}" alt="">
+            <p class="text-login">Register</p>
+        </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+    <div class="form-startask-register">
+        
+        <div class="forms-field">
+            <form method="post">
+                {% csrf_token %}
+        
+            <div class="user-login">
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="error">{{ form.username.errors }}</div>
+        {% endif %}
+            </div>
 
-    <label for="password1">Password:</label>
-    <input type="password" id="password1" name="password1" required><br><br>
 
-    <label for="password2">Confirm Password:</label>
-    <input type="password" id="password2" name="password2" required><br><br>  {% endcomment %}
+            <div class="password-login">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
 
 
-    <button type="submit">Register</button>
-</form>
-<p>Faça login? <a href="{% url 'login' %}">Login</a></p>
-{% if form.errors %}
+            <div class="password-login">
+                <label for="{{ form.password.id_for_label }}">Password:</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="error">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="password-login">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="error">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+
+
+                <div class="adjust-button-login">
+                    <button class="button-login" type="submit">Cadastrar</button>
+                </div>
+            </form>
+            <div> 
+                <img src="{% static 'images/warning-register.svg' %}" alt="">
+                <a class="link-login" href="{% url 'login' %}">Faça Login</a>
+            </div>
+            {% if form.errors %}
         <div class="errors">
             {{ form.errors }}
         </div>
     {% endif %}
+        </div>
+    </div>
+
+</div>
+
+   
+    <img class="image-style-register" src="{% static 'images/imagem-login-x.svg' %}" alt="">
+
+</div>
 </body>
 </html>
