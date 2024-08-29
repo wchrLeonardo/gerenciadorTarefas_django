@@ -1,24 +1,9 @@
-# myapp/forms.py
+# startask/forms.py
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from .models import User
 from django.contrib.auth import authenticate
-
-# class RegisterForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'password']  
-
-#     password = forms.CharField(widget=forms.PasswordInput)
-
-#     def save(self, commit=True):
-#         user = super().save(commit=False)
-#         user.set_password(self.cleaned_data['password']) 
-#         if commit:
-#             user.save()
-#         return user
-
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-password-login'}))
