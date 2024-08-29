@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+  {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
 </head>
 <body>
+  <header class="nav">
+    <figure class="adjust-logo">
+        <button class="hidden-button-logo">
+            <img src="{% static 'images/imagem-login.svg' %}" alt="">
+        </button>
+    </figure>
+    <h1 class="title-app">starTask</h1>
+    <button type="button" class="crt-prjct" data-toggle="modal" data-target="#exampleModal"> 
+        <img src="{% static 'images/add_project.svg' %}" alt="">
+        <p class="texts-buttons">Add Project</p>
+    </button>
+</header>
+
     {% block content %}
   <h2>Edit Task</h2>
   <form method="POST">

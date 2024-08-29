@@ -197,10 +197,12 @@
       </button>
         {% endif %}
 
+         
+
 
         {% if request.GET.project_id %}
-      <a href="{% url 'add_task' %}?project_id={{ request.GET.project_id }}">
-        <button type="button" class="crt-task">      
+      <a href="{% url 'add_task' %}?project_id={{ request.GET.project_id }}" class="link-task">
+        <button type="button" class="crt-task">     
             <p class="texts-buttons">Add Task</p>
             <img src="{% static 'images/Plus.png' %}" alt="">
         </button>
@@ -217,6 +219,7 @@
     </div>
 
     </main>
+
 
     <!--Modal Data -->
     <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">

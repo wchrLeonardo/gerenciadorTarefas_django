@@ -53,14 +53,23 @@ class ProjectCreateView(CreateView):
 class TaskCreateView(CreateView):
     model = Task
     fields = ["title", "description"]
+    template_name = 'startask/add_task.html'
     success_url = reverse_lazy("task_list")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['project_id'] = self.request.GET.get('project_id')
+        return context
+
     def form_valid(self, form):
-        project_id = self.request.POST.get("project_id")
-        if project_id:
-            project = get_object_or_404(Project, id=project_id)
-            form.instance.project = project
+        project_id = self.request.GET.get("project_id")
+        project = get_object_or_404(Project, id=project_id)
+        form.instance.project = project
         return super().form_valid(form)
+
+    def get_success_url(self):
+        project_id = self.object.project.id 
+        return reverse('task_list')+ f'?project_id={project_id}'
     
 
 class UpdateTaskView(UpdateView):

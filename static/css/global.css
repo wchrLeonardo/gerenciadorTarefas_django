@@ -72,6 +72,7 @@ body{
     font-family: var(--var-font1);
     font-weight: bold;
     margin-top: 10px;
+    text-decoration: none;
 }
 .crt-task{
     margin-top: 15px;
@@ -83,6 +84,7 @@ body{
     justify-content: center;
     align-items: center;
     gap:5%;
+    text-decoration: none;
 }
 .del-project{
     margin-top: 15px;
@@ -473,6 +475,7 @@ body{
 
 .modal-body{
     background-color: #508c9b;
+    border-radius: 20px;
 }
 
 .input-project{
@@ -504,4 +507,10 @@ body{
     margin-left: 20%;
     border: none;
     outline: none;
+}
+/* .link-task{
+    text-decoration: none;
+} */
+.link-task:hover{
+    text-decoration: none;
 }

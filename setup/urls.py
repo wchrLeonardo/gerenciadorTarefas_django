@@ -14,7 +14,6 @@ urlpatterns = [
     path('delete-task/<int:task_id>/', delete_task, name="delete_task"),
     path('delete-project/', delete_project,  name="delete_project"),
     path('update-task/<int:pk>/', UpdateTaskView.as_view(), name='update_task'),
-    # path('login/', auth_views.LoginView.as_view(template_name='startask/login.html'), name="login"),
     path('login/', views.login, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 #     path('register/', views.register, name='register'),
