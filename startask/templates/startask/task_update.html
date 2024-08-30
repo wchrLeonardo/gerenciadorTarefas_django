@@ -21,7 +21,7 @@
     </button>
 </header>
 
-    {% block content %}
+    {% comment %} {% block content %}
   <h2>Edit Task</h2>
   <form method="POST">
     {% csrf_token %}
@@ -29,7 +29,55 @@
     <button type="submit" class="btn btn-primary">Save changes</button>
   </form>
   <a href="{% url 'task_list' %}">Cancel</a>
-{% endblock %}
+{% endblock %} {% endcomment %}
+
+
+<div class="table-add-task">
+  <table>
+  <thead>
+      <tr>
+          <th class="title-task">Atualizar task</th>
+          <th><a href="{% url 'task_list' %}?project_id={{ request.GET.project_id }}" class="link-back"> 
+              
+              Voltar
+          
+      </a></th>
+      </tr>
+  </thead>
+  <tbody>
+      <form class="list-task" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="project_id" value="{{ request.GET.project_id }}">
+          
+      <tr>
+          <td>
+              <label class="labels" for="TaskTitle">Título</label></td>
+          <td>
+              <input type="text" name="title" id="TaskTitle" autocomplete="off" class="title-task-form" value="{{ task.title }}" required>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <label class="label-description" for="TaskDescription">Descrição</label>
+          </td>
+          <td>
+              <textarea class="description-task-form" name="description" id="TaskDescription" value="{{ task.description }}" autocomplete="off" required></textarea>
+          </td>
+      </tr>
+      <tr colspan="2">
+          <td colspan="2">
+              <button type="submit" class="link-save">Save changes</button>
+          </td>
+  
+      </tr>
+  </table>
+  </div>
+
+
+  </form>
+
+   {% include "startask/footer.html" %} 
+
 </body>
 </html>
 

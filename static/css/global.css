@@ -508,9 +508,110 @@ body{
     border: none;
     outline: none;
 }
-/* .link-task{
-    text-decoration: none;
-} */
 .link-task:hover{
     text-decoration: none;
+}
+.table-add-task{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+}
+ 
+.link-back {
+    display: flex;
+    height: 3em;
+    width: 100%px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: var(--var-third-color);
+    text-decoration: none;
+    color: #000000;
+    font-family: var(--var-font1);
+    font-size: 1.1rem;
+    font-weight: 400;
+   }
+   
+   .link-back:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+   }
+   
+   .link-save {
+    display: flex;
+    height: 3em;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #43af8d;
+    text-decoration: none;
+    color: #000000;
+    font-family: var(--var-font1);
+    font-size: 1.1rem;
+    font-weight: 400;
+   }
+   .link-save:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+   }
+.title-task{
+    font-family: var(--var-font1);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.labels{
+    font-family: var(--var-font1);
+    display: flex;
+    height: 3em;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #303074;
+    text-decoration: none;
+    color: #ffffff;
+}
+.title-task-form{
+    height: 2em;
+    width: 260px;
+    border: solid #303074 2px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+}
+.label-description{
+ height: 10em;   
+ font-family: var(--var-font1);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 3px;
+ letter-spacing: 1px;
+ transition: all 0.2s linear;
+ cursor: pointer;
+ border: none;
+ background: #303074;
+ text-decoration: none;
+ color: #ffffff;
+}
+.description-task-form{
+    width:260px;
+    height: 9em;
+    border: solid #303074 3px;
+    resize: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
 }

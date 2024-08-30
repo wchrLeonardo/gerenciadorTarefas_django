@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
+
 </head>
 <body>
     <header class="nav">
@@ -20,19 +21,51 @@
             <p class="texts-buttons">Add Project</p>
         </button>
     </header>
-    <form class="list-task" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="project_id" value="{{ request.GET.project_id }}">
-        
-        <label for="TaskTitle">Título</label>
-        <input type="text" name="title" id="TaskTitle" autocomplete="off">
-        
-        <label for="TaskDescription">Descrição</label>
-        <textarea name="description" id="TaskDescription" autocomplete="off"></textarea>
-        
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        
-        <a href="{% url 'task_list' %}?project_id={{ request.GET.project_id }}">Voltar</a>
+
+    <div class="table-add-task">
+    <table>
+    <thead>
+        <tr>
+            <th class="title-task">Criar task</th>
+            <th><a href="{% url 'task_list' %}?project_id={{ request.GET.project_id }}" class="link-back"> 
+                
+                Voltar
+            
+        </a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <form class="list-task" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="project_id" value="{{ request.GET.project_id }}">
+            
+        <tr>
+            <td>
+                <label class="labels" for="TaskTitle">Título</label></td>
+            <td>
+                <input type="text" name="title" id="TaskTitle" autocomplete="off" class="title-task-form" required>
+            </td>
+        </tr>
+        <tr>
+            <td >
+                <label class="label-description" for="TaskDescription">Descrição</label>
+            </td>
+            <td>
+                <textarea class="description-task-form" name="description" id="TaskDescription" autocomplete="off"></textarea>
+            </td>
+        </tr>
+        <tr colspan="2">
+            <td colspan="2">
+                <button type="submit" class="link-save">Save changes</button>
+            </td>
+    
+        </tr>
+    </table>
+    </div>
+
+
     </form>
+
+     {% include "startask/footer.html" %} 
 </body>
-</html> 
+</html>
