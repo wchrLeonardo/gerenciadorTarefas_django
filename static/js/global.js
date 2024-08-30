@@ -17,3 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+  //FUNÇÃO PARA O USUÁRIO CONFIRMAR O LOGOUT
+  document.getElementById('logoutButton').onclick = function() {
+    console.log("teste")
+    var confirmed = confirm('Tem certeza que deseja sair de sua conta?');
+    if (confirmed) {
+        document.getElementById('logoutForm').submit();
+    }
+};

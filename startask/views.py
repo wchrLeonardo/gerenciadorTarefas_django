@@ -20,13 +20,12 @@ class CombinedListView(LoginRequiredMixin, ListView):
     template_name = 'task_list.html'
     context_object_name = 'tasks'
 
-
     def get_queryset(self):
         project_id = self.request.GET.get('project_id')
         if project_id:
             print(f"User instance: {self.request.user} (Type: {type(self.request.user)})")
             return Task.objects.filter(project_id=project_id, project__user=self.request.user)
-        return Task.objects.filter(project__user=self.request.user)
+        return Task.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +33,6 @@ class CombinedListView(LoginRequiredMixin, ListView):
         context['projects'] = Project.objects.filter(user=self.request.user)
         context['selected_project_id'] = self.request.GET.get('project_id')
         return context
-
     
     
 class ProjectCreateView(CreateView):

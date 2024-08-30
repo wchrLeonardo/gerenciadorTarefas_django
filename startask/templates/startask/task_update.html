@@ -8,29 +8,21 @@
     <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
 </head>
 <body>
-  <header class="nav">
+    {% include "startask/header.html" %} 
+  {% comment %} <header class="nav">
     <figure class="adjust-logo">
         <button class="hidden-button-logo">
             <img src="{% static 'images/imagem-login.svg' %}" alt="">
         </button>
     </figure>
     <h1 class="title-app">starTask</h1>
+    {% if request.path != '/add-task/' and not request.path != '/update-task/' %}
     <button type="button" class="crt-prjct" data-toggle="modal" data-target="#exampleModal"> 
         <img src="{% static 'images/add_project.svg' %}" alt="">
         <p class="texts-buttons">Add Project</p>
     </button>
-</header>
-
-    {% comment %} {% block content %}
-  <h2>Edit Task</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save changes</button>
-  </form>
-  <a href="{% url 'task_list' %}">Cancel</a>
-{% endblock %} {% endcomment %}
-
+    {% endif %}
+</header> {% endcomment %}
 
 <div class="table-add-task">
   <table>
@@ -61,7 +53,7 @@
               <label class="label-description" for="TaskDescription">Descrição</label>
           </td>
           <td>
-              <textarea class="description-task-form" name="description" id="TaskDescription" value="{{ task.description }}" autocomplete="off" required></textarea>
+              <textarea class="description-task-form" name="description" id="TaskDescription" autocomplete="off">{{ task.description }}</textarea>
           </td>
       </tr>
       <tr colspan="2">

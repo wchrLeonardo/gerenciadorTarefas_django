@@ -24,7 +24,7 @@ class Task(models.Model):
         ('finished', 'Finished')
     ]
     title = models.CharField(max_length=80, null=False, blank=False)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, blank=True, default="Sem descrição...")
     created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
     status_completed = models.CharField(max_length=15, choices=STATUS_CHOICES,default="todo")

@@ -9,18 +9,21 @@
 
 </head>
 <body>
-    <header class="nav">
+    {% include "startask/header.html" %} 
+    {% comment %} <header class="nav">
         <figure class="adjust-logo">
             <button class="hidden-button-logo">
                 <img src="{% static 'images/imagem-login.svg' %}" alt="">
             </button>
         </figure>
         <h1 class="title-app">starTask</h1>
+         {% if request.path != '/add-task/' and request.path != '/update-task/' %}
         <button type="button" class="crt-prjct" data-toggle="modal" data-target="#exampleModal"> 
             <img src="{% static 'images/add_project.svg' %}" alt="">
             <p class="texts-buttons">Add Project</p>
         </button>
-    </header>
+        {% endif %}
+    </header> {% endcomment %}
 
     <div class="table-add-task">
     <table>
