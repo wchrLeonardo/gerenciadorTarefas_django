@@ -1,12 +1,30 @@
-{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    {% load static %}
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>StarTask</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/global.css" %}'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    <link rel="icon" href="{% static 'images/imagem-logo.svg' %}" type="image/svg+xml">
+    <script src="{% static 'js/global.js' %}"></script>
+
+</head>
+<body class="ttt">
 <header class="nav">
+    
     <figure class="adjust-logo">
         <button class="hidden-button-logo">
             <img src="{% static 'images/imagem-login.svg' %}" alt="">
         </button>
     </figure>
     <h1 class="title-app">starTask</h1>
-    {% if request.path != '/add-task/' or not request.path != '/update-task/' %}
+    {% if request.path == '/' %}
     <button type="button" class="crt-prjct" data-toggle="modal" data-target="#exampleModal"> 
         <img src="{% static 'images/add_project.svg' %}" alt="">
         <p class="texts-buttons">Add Project</p>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="pt-br">
     {% load static %}
 <head>
@@ -14,20 +14,10 @@
     <script src="{% static 'js/global.js' %}"></script>
 
 </head>
-<body class="ttt">
+<body class="ttt"> {% endcomment %}
+{% load static %}
   {% include "startask/header.html" %} 
-  {% comment %} <header class="nav">
-        <figure class="adjust-logo">
-            <button class="hidden-button-logo">
-                <img src="{% static 'images/imagem-login.svg' %}" alt="">
-            </button>
-        </figure>
-        <h1 class="title-app">starTask</h1>
-        <button type="button" class="crt-prjct" data-toggle="modal" data-target="#exampleModal"> 
-            <img src="{% static 'images/add_project.svg' %}" alt="">
-            <p class="texts-buttons">Add Project</p>
-        </button>
-    </header> {% endcomment %}
+  
 
     
   <!-- Modal Add Project-->

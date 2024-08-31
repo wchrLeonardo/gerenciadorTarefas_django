@@ -545,7 +545,6 @@ body{
     margin-top: 5%;
     display: flex;
     justify-content: center;
-    gap: 0;
 }
  
 .link-back {
@@ -570,6 +569,7 @@ body{
    .link-back:hover {
     box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
     transform: translateY(-2px);
+    text-decoration: none;
    }
    
    .link-save {
@@ -593,6 +593,7 @@ body{
    .link-save:hover {
     box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
     transform: translateY(-2px);
+    color: #0d4735;
    }
 .title-task{
     font-family: var(--var-font1);
